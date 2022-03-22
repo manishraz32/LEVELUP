@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch StringDp",
+            "request": "launch",
+            "mainClass": "StringDp",
+            "projectName": "DP_8802c956"
+        },
+        {
+            "type": "java",
+            "name": "Launch DynamicProg",
+            "request": "launch",
+            "mainClass": "DynamicProg",
+            "projectName": "DP_8802c956"
+        },
+        {
+            "type": "java",
+            "name": "Launch Dynamic",
+            "request": "launch",
+            "mainClass": "Dynamic",
+            "projectName": "DP_8802c956"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch DynamicProg",
+            "request": "launch",
+            "mainClass": "DynamicProg",
+            "projectName": "DP_eb8c9bf3"
+        }
+    ]
+}
