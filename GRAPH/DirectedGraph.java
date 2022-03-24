@@ -53,7 +53,7 @@ public class DirectedGraph {
 
     }
 
-    // khans algorithm to find topological order in cyclic directed graph
+    // khans algorithm to find topological order in acyclic directed graph
 
     public static ArrayList<Integer> kahnsAlgo(ArrayList<Edge>[] graph) {
         int n = graph.length;
@@ -64,7 +64,7 @@ public class DirectedGraph {
         //count the inorder
         for(int i = 0; i < inorder.length; i++) {
             for(Edge e : graph[i]) {
-                inorder[e.v]++;
+                inorder[e.v]++;/
             }
         }
 

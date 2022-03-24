@@ -174,7 +174,7 @@ public class GrraphQuest {
             }
         }
 
-        return res && (grid2[sr][sc] == 1 ? true : false);
+        return res && (grid1[sr][sc] == 1 ? true : false);
     }
 
     public static int countSubIslands(int[][] grid1, int[][] grid2) {
