@@ -185,7 +185,104 @@ public class GraphAlgo {
         }
     }
 
+    // Bellman-ford algorithm
+    // Single source shortest path
+    // Distance from the Source (Bellman-Ford Algorithm)
+    // Negative weight cycle
 
+    public int isNegativeWeightCycle(int n, int[][] edges) {
+        int[] dis = new int[n];
+        int edge = edges.length;
+        Arrays.fill(dis, 100000000);
+        dis[0] = 0;
+        
+        for(int i = 1; i < n; i++) {
+            for(int j = 0; j < edge; j++) {
+                int u = edges[j][0];
+                int v = edges[j][1];
+                int w = edges[j][2];
+                
+                if(dis[u] != 100000000 && dis[u] + w < dis[v]) {
+                    dis[v] = dis[u] + w;
+                }
+            }
+        }
+
+        // in dis[] array shortest distance will be stored from the src 0 
+        
+        for(int j = 0; j < edge; j++) {
+                int u = edges[j][0];
+                int v = edges[j][1];
+                int w = edges[j][2];
+                
+                if(dis[u] != 100000000 && dis[u] + w < dis[v]) {
+                    return 1; // it means it has negative weight cycle
+                }
+        }
+        
+        return 0;
+    }
+
+
+    // Strongly connected component 
+    // kosaraju algorithm
+     //Function to find number of strongly connected components in the graph.
+     public int kosaraju(int V, ArrayList<ArrayList<Integer>> adj) {
+        boolean[] vis = new boolean[V];
+        Stack<Integer> stk = new Stack<>();
+        
+        //calling dfs like topo sort
+        for(int i = 0; i < V; i++) {
+            if(!vis[i]) {
+                dfs(i, adj, stk, vis);
+            }
+        }
+        
+        //transpose the matrix
+        ArrayList<ArrayList<Integer>> transpose = new ArrayList<ArrayList<Integer>>();
+        for(int i = 0; i < V; i++) {
+            transpose.add(new ArrayList<Integer>());
+        }
+        for(int i = 0; i < V; i++) {
+            for(Integer nbr : adj.get(i)) {
+                transpose.get(nbr).add(i);
+            }
+        }
+        
+        //dfs according to the finishing time
+        Arrays.fill(vis, false);
+        int count = 0;
+        while(stk.size() > 0 ) {
+            Integer vtx = stk.peek();
+            stk.pop();
+            if(vis[vtx] == false) {
+                revDfs(vtx, transpose, vis);
+                count++;
+            }
+        }
+        
+        return count;
+    }
+    public void dfs(int src, ArrayList<ArrayList<Integer>> adj, Stack<Integer> stk, boolean[] vis) {
+        vis[src] = true;
+        for(int nbr : adj.get(src)) {
+            if(vis[nbr] == false) {
+                dfs(nbr, adj, stk, vis);
+            }
+        }
+        stk.push(src);
+    }
+    
+    public void revDfs(int src, ArrayList<ArrayList<Integer>> adj, boolean[] vis) {
+        vis[src] = true;
+        for(int nbr : adj.get(src)) {
+            if(vis[nbr] == false) {
+                revDfs(nbr, adj, vis);
+            }
+        }
+    }
+
+    
     public static void main(String[] args) {
 
     }

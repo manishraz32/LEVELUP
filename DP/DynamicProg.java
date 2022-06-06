@@ -315,22 +315,45 @@ public class DynamicProg {
         }
         return maxGold;
     }
+
     
+    /* ------------------------ DP supsequence and subset && target ------------------------- */
+    // Input:
+    // N = 6
+    // arr[] = {3, 34, 4, 12, 5, 2}
+    // sum = 9
+    // Output: 1 
+    // Explanation: Here there exists a subset with
+    // sum = 9, 4+3+2 = 9.
+    public static int isSubset(int[] arr, int idx, int tar, int[][] dp) {
+        if(tar == 0) return 1;
+        if(idx == 0) {
+            return arr[idx] == tar ? 1 : 0;
+        }
+        if(dp[idx][tar]  != -1) {
+            return dp[idx][tar];
+        }
+        int notTake = isSubset(arr, idx - 1, tar, dp);
+        int take = 0;
+        if(tar >= arr[idx]) {
+            take = isSubset(arr, idx - 1, tar - arr[idx], dp);
+        }
+        
+       return dp[idx][tar] = (take == 1 || notTake == 1)  ? 1 : 0;
+    }
+
+    static Boolean isSubsetSum(int N, int arr[], int sum) {
+        int[][] dp = new int[N + 1][sum + 1];
+        for(int[] arr1 : dp) {
+            Arrays.fill(arr1, -1);
+        }
+        isSubset(arr, N - 1, sum, dp);
+        printTwoD(dp);         
+        
+    }
     public static void main(String[] arg) {
-
-    //     int gold[][]= { {1, 3, 1, 5},
-    //                     {2, 2, 4, 1},
-    //                     {5, 0, 2, 3},
-    //                     {0, 6, 1, 2} };
-                         
-    //     int m = 4, n = 4;
-         
-    //     System.out.print(maxGold(m, n,gold));
-    // }
-
-    // dpSeries();
-    // jumpPathSeries();
-    //mazePathSeries();
-    friendsPairing();
+        int[] arr = {2, 3, 1, 1};
+        isSubsetS(4, arr, 4);
+    
     }
 }

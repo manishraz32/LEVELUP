@@ -299,11 +299,62 @@ public class HshMap {
 
 
 
+    //https://practice.geeksforgeeks.org/problems/zero-sum-subarrays1825/1#
+    // n = 6
+    // arr[] = {0,0,5,5,0,0}
+    // Output: 6
+    // Explanation: The 6 subarrays are 
+    // [0], [0], [0], [0], [0,0], and [0,0].
+    public static long findSubarray(long[] arr ,int n) 
+    {
+        HashMap<Long, Long> hmap = new HashMap<>();
+        hmap.put((long)0, (long)1);
+        long sum = 0;
+        int i = -1;
+        int len = arr.length;
+        long count = 0;
+        while(i < len - 1) {
+            i++;
+            sum += arr[i];
+            if(hmap.containsKey(sum)) {
+                count += hmap.get(sum);
+                hmap.put(sum, hmap.get(sum) + 1);
+            } else {
+                hmap.put(sum, (long)1);
+            }
+        }
+        return count;
+    }
 
+    // 7.Largest Subarray With Contiguous Elements
+    // Elemments can be duplicates
+    // Input:  arr[] = {10, 12, 11};
+    // Output: Length of the longest contiguous subarray is 3
+    
+    public static int solution(int[] arr) {
+		int ans = 0;
+		for (int i = 0; i < arr.length; i++) {
+			int min = arr[i];
+			int max = arr[i];
+			HashSet<Integer> set = new HashSet<Integer>();
+			set.add(arr[i]);
+			for (int j = i + 1; j < arr.length; j++) {
+				if (set.contains(arr[j])) {
+					break;
+				}
+				set.add(arr[j]);
+				min = Math.min(min, arr[j]);
+				max = Math.max(max, arr[j]);
+				if (max - min == j - i) {
+					ans = Math.max(ans, j - i + 1);
+				}
+			}
+		}
 
+		return ans;
+	}
 
-
-
+    
 
 
 

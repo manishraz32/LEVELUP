@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Arraays {
 
-    // https://leetcode.com/problems/long-pressed-name/
+    //u
     public boolean isLongPressedName(String name, String typed) {
         if (name.length() > typed.length())
             return false;
@@ -317,8 +317,7 @@ public class Arraays {
     // https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup
     // /arrays-and-strings/wiggle-sort-1/ojquestion#!
     // 1. Given an unsorted array 'arr'.
-    // 2. Reorder it in-place such that : arr[0] <= arr[1] >= arr[2] <= arr[3] . . .
-    // .
+    // 2. Reorder it in-place such that : arr[0] <= arr[1] >= arr[2] <= arr[3] 
     // 3. Please sort the array in place and do not define additional arrays.
     // 4. Allowed Time Complexity : O(n)
 
@@ -395,7 +394,6 @@ public class Arraays {
         for (int i = 0; i < n; i++) {
             int si = queries[i][0];
             int ei = queries[i][1];
-            ;
             int inc = queries[i][2];
 
             ans[si] += inc;
@@ -403,7 +401,7 @@ public class Arraays {
                 ans[ei + 1] -= inc;
             }
         }
-
+        
         int sum = 0;
         for (int i = 0; i < length; i++) {
             sum += ans[i];
@@ -776,7 +774,7 @@ public class Arraays {
         return ans;
     }
 
-    // https://practice.geeksforgeeks.org/problems/find-pair-given-difference1559/1
+    // c
     // Input:
     // L = 6, N = 78
     // arr[] = {5, 20, 3, 2, 5, 80}
