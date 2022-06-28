@@ -122,6 +122,61 @@ public class GfgGraphSheet {
     }
 
 
+    //3 -> Euler Path and circuit
+
+    public void dfs( ArrayList<ArrayList<Integer>> adj, int src, boolean[] vis) {
+        vis[src] = true;
+        for(int nbr : adj.get(src)) {
+            if(vis[nbr] == false) {
+                dfs(adj, nbr, vis);
+            }
+        }
+    }
+    
+    public boolean isConnected( ArrayList<ArrayList<Integer>> adj) {
+        int v = adj.size();
+        boolean[] visited = new boolean[v];
+        int i = 0;
+        
+        // checking if any edge is present
+        for(i = 0; i < v; i++) {
+            if(adj.get(i).size() != 0) {
+                break;
+            }
+        }
+        // i == v means all vertex are seperated
+        if(i == v) return true;
+
+        dfs(adj, i, visited);
+        
+        for(i = 0; i < v; i++) {
+            if(visited[i] == false && adj.get(i).size() > 0)
+                return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean isEularCircuitExist(int V, ArrayList<ArrayList<Integer>> adj) {
+
+        // if graph is not connected, then
+        // Euler Circuit is not possible
+        if(isConnected(adj) == false) {
+            return false;
+        }
+        
+        int odd = 0;
+        
+        for(int i = 0; i < V; i++) {
+            if(adj.get(i).size() % 2 != 0)  {
+                odd++;
+            }
+        }
+        
+        return (odd == 0) ? true : false;
+    }
+
+
     public static void main(String[] args) {
 
     }
