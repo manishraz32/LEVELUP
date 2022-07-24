@@ -1090,6 +1090,45 @@ public class StringProb {
         return ans;
     }
 
+
+    //33. Distinct palindromic substrings
+    // Input:
+    // str = "abaaa"
+    // Output:
+    // 5
+    // Explanation : These are included in answer:
+    // "a","aa","aaa","aba","b"
+
+    int palindromeSubStrs(String str) { 
+        HashSet<String> set = new HashSet<>();
+          int count = 0;
+            int n = str.length();
+            int[][] dp = new int[n][n];
+            for(int g = 0; g < n; g++) {
+                for(int i = 0, j = g; j < n; i++, j++) {
+
+                   if(g == 0) {
+                       dp[i][j] = 1;
+                   }else if(g == 1) {
+                       dp[i][j] = (str.charAt(i) == str.charAt(j)) ? 2 : 0;
+                   } else {
+                       if(str.charAt(i) == str.charAt(j) && dp[i+1][j-1] != 0) 
+                           dp[i][j] = dp[i+1][j-1] + 2;
+                       else
+                           dp[i][j] = 0;     
+
+                   }
+                    
+                    if(dp[i][j] > 0) {
+                        set.add(str.substring(i, j + 1));
+                        count++;
+                    }
+                }
+        }
+        return set.size();
+          
+    }  
+
     public static void main(String[] args) {
         // searchPattern();
         // System.out.println(extractMaximum("100klh10000000abc385bg"));

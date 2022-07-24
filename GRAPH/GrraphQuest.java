@@ -65,7 +65,7 @@ public class GrraphQuest {
     // 463
     public int islandPerimeter(int[][] grid) {
         int n = grid.length, m = grid[0].length;
-        int[][] dir = { { 1, 0 }, { 0, 1 } };
+        int[][] dir = { {1,0}, {0, 1} };
 
         int onceCount = 0, nbrCount = 0;
         for (int i = 0; i < n; i++) {

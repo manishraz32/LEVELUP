@@ -80,7 +80,6 @@ public class BfsQuest {
                     if(r >= 0 && c >= 0 && r < rows && c < cols && grid[r][c] == 1) {
                         grid[r][c] = 2;
                         que.addLast(cols * r + c);    
-
                     }
                 }
             }
